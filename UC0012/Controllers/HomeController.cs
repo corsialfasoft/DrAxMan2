@@ -26,5 +26,13 @@ namespace UC0012.Controllers
 
 			return View();
 		}
+		public ActionResult Cerca()
+		{
+			return View();
+		}
+		public ActionResult Ricerca()
+		{
+			return View("Cerca");
+		}
 	}
 }
