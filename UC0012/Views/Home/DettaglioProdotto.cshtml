@@ -1,7 +1,7 @@
 ﻿@{
-    ViewBag.Title = "DettaglioProdotto";
+    ViewBag.Title = "Dettaglio Prodotto";
 }
-
+<h2>@ViewBag.Title</h2>
 @using(Html.BeginForm("AddToCarrello","Home",FormMethod.Post)) {
 
 
@@ -17,7 +17,7 @@
     <div>
         <input type="hidden" name="id" value="@ViewBag.prodotto.Id" />
         <input type="hidden" name="descrizione" value="@ViewBag.prodotto.Descrizione" />
-        <input type="number" name="quantita" placeholder="Inserisci la quantita desiderata" />
+        <input type="number" name="quantita" placeholder="Inserisci quantita" />
     </div>
     <hr />
     <input type="submit" value="Aggiungi al carrello" />

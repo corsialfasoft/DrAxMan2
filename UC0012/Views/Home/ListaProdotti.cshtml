@@ -14,6 +14,7 @@
         Dettagli
     </div>
 </div>
+<hr />
 @foreach(var p in ViewBag.prodotti){ 
     <div class="row">
         <div class="col-md-4">
@@ -23,7 +24,7 @@
             @p.Descrizione
         </div>
         <div class="col-md-4">
-            <span class="badge">
+            <span class=" glyphicon-check">
                 @Html.ActionLink("Define","Define",new { id = @p.Id })
             </span>
         </div>
