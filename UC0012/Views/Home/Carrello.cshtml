@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Carrello";
 }
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 <div class="text-warning">
     <h3>@ViewBag.Message</h3>
 </div>
@@ -12,6 +12,7 @@
             <div class="col-md-4">Descrizione</div>
             <div class="col-md-4">Quantita Ordinata</div>
         </div>
+        <hr />
         @foreach (var product in ViewBag.Prodotti) {
         
             <div class="row">
@@ -21,4 +22,7 @@
             </div>
         }
     </div>
+     <a class="btn btn-primary" href="/Home/Ordina" role="button">Invia</a>
+    <a class="btn btn-primary" href="/Home/Pulisci" role="button">Pulisci</a>
+    <a class="btn btn-primary" href="/Home/Cerca" role="button">Pulisci</a>
 }
