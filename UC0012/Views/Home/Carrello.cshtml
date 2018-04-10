@@ -2,9 +2,23 @@
     ViewBag.Title = "Carrello";
 }
 <h2>@ViewBag.Title.</h2>
-<div class="alert-warning">
+<div class="text-warning">
     <h3>@ViewBag.Message</h3>
 </div>
-
-
-<p>Use this area to provide additional information.</p>
+@if(ViewBag.Message == null){  
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">Id</div>
+            <div class="col-md-4">Descrizione</div>
+            <div class="col-md-4">Quantita Ordinata</div>
+        </div>
+        @foreach (var product in ViewBag.Prodotti) {
+        
+            <div class="row">
+                <div class="col-md-4">@product.Id</div>
+                <div class="col-md-4">@product.Descrizione</div>
+                <div class="col-md-4">@product.QuantitaOrdinata</div>
+            </div>
+        }
+    </div>
+}

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using UC0012.Models;
 using System.Web.Mvc;
-using UC0012.Models
+using UC0012.Models;
 
 namespace UC0012.Controllers
 {
@@ -59,6 +59,15 @@ namespace UC0012.Controllers
 				ViewBag.prodotti = prodotti;
 				return View("ListaProdotti");
 			}
+		}
+
+		public ActionResult Carrello(){
+			List<Prodotto> list = Session["prodotti"] as List<Prodotto>;
+			if(list !=null && list.Count>0){
+				ViewBag.Prodotti = list;
+			}else
+				ViewBag.Message= "Non ci sono ordini";
+			return View();
 		}
 	}
 }
