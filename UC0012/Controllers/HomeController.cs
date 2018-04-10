@@ -39,6 +39,7 @@ namespace UC0012.Controllers
 		{
 			return View();
 		}
+        [HttpPost]
 		public ActionResult Cerca(string id,string descrizione)
 		{
 			DomainModel dm = new DomainModel();
