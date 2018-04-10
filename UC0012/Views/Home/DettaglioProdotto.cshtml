@@ -3,23 +3,22 @@
 }
 
 @using(Html.BeginForm("AddToCarrello","Home",FormMethod.Post)) {
-    <div class="text-warning">
-        @ViewBag.Message
+
+
+    <div>
+        Codice: @ViewBag.prodotto.Id
     </div>
-    <div class="container">
-        <div>
-            Codice: @ViewBag.prodotto.Id
-        </div>
-        <div>
-            Descrizione: @ViewBag.prodotto.Descrizione
-        </div>
-        <div>
-            Giacenza: @ViewBag.prodotto.Giacenza
-        </div>
-        <div>
-            <input type="hidden" name="id" value="@ViewBag.prodotto.Id" />
-            <input type="text" id="qta" name="qta" placeholder="Inserisci la quantita desiderata" />
-            <input type="submit" value="Aggiungi al carrello" />
-        </div>
+    <div>
+        Descrizione: @ViewBag.prodotto.Descrizione
     </div>
+    <div>
+        Giacenza: @ViewBag.prodotto.Giacenza
+    </div>
+    <div>
+        <input type="hidden" name="id" value="@ViewBag.prodotto.Id" />
+        <input type="hidden" name="descrizione" value="@ViewBag.prodotto.Descrizione" />
+        <input type="number" name="quantita" placeholder="Inserisci la quantita desiderata" />
+    </div>
+    <hr />
+    <input type="submit" value="Aggiungi al carrello" />
 }
