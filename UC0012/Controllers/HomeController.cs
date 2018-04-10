@@ -39,7 +39,7 @@ namespace UC0012.Controllers
 		{
 			return View();
 		}
-		public ActionResult Ricerca(string id,string descrizione)
+		public ActionResult Cerca(string id,string descrizione)
 		{
 			DomainModel dm = new DomainModel();
 			int codice ;
@@ -50,7 +50,7 @@ namespace UC0012.Controllers
 					return View("Cerca");
 				}
 				ViewBag.prodotto = prodotto;
-				return View("DettagliProdotto");
+				return View("DettaglioProdotto");
 			} else {
 				List<Prodotto> prodotti = dm.SearchProdotti(descrizione);
 				if (prodotti == null) {
