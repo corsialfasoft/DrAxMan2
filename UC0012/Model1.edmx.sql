@@ -118,3 +118,5 @@ GO
 -- --------------------------------------------------
 -- Script has ended
 -- --------------------------------------------------
+
+insert into ProdottiSet(descrizione,quantita) values('televisore',1000),('telefono',2000)

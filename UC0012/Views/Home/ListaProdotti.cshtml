@@ -1,38 +1,39 @@
 ﻿@{
-    ViewBag.Title = "ListaProdotti";
+    ViewBag.Title = "Lista Prodotti";
 }
 <h2>@ViewBag.Title</h2>
 
 <div class=" text-warning">
     <h3>@ViewBag.Message</h3>
 </div>
-
-<div class="row">
-    <div class="col-md-4">
-        Codice
-    </div>
-    <div class="col-md-4">
-        Descrizione
-    </div>
-    <div class="col-md-4">
-        Dettagli
-    </div>
-</div>
-<hr />
-@foreach(var p in ViewBag.prodotti) {
+@if(@ViewBag.Message == null) { 
     <div class="row">
         <div class="col-md-4">
-            @p.Id
+            Codice
         </div>
         <div class="col-md-4">
-            @p.Descrizione
+            Descrizione
         </div>
         <div class="col-md-4">
-            <span class=" glyphicon-check">
-                @Html.ActionLink("Define","Define",new { id = @p.Id })
-            </span>
+            Dettagli
         </div>
     </div>
+    <hr />
+    foreach (var p in ViewBag.prodotti) {
+        <div class="row">
+            <div class="col-md-4">
+                @p.Id
+            </div>
+            <div class="col-md-4">
+                @p.Descrizione
+            </div>
+            <div class="col-md-4">
+                <span class=" glyphicon-check">
+                    @Html.ActionLink("Define", "Define", new { id = @p.Id })
+                </span>
+            </div>
+        </div>
+    }
 }
 
 

@@ -15,6 +15,9 @@ namespace UC0012.Models {
 		public string Descrizione { get; set; }
 		public int Giacenza { get; set; }
 		public int QuantitaOrdinata { get; set; }
+		public override bool Equals(object obj) {
+			return this.Id == ((Prodotto)obj).Id;
+		}
 	}
 
 	public class DomainModel : IDomainModel {

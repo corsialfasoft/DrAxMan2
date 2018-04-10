@@ -5,24 +5,24 @@
 <div class=" text-warning">
     <h3>@ViewBag.Message</h3>
 </div>
-
-@using(Html.BeginForm("AddToCarrello","Home",FormMethod.Post)) {
-
-
-    <div>
-        Codice: @ViewBag.prodotto.Id
-    </div>
-    <div>
-        Descrizione: @ViewBag.prodotto.Descrizione
-    </div>
-    <div>
-        Giacenza: @ViewBag.prodotto.Giacenza
-    </div>
-    <div>
-        <input type="hidden" name="id" value="@ViewBag.prodotto.Id" />
-        <input type="hidden" name="descrizione" value="@ViewBag.prodotto.Descrizione" />
-        <input type="number" name="quantita" placeholder="Inserisci quantita" />
-    </div>
-    <hr />
-    <input type="submit" value="Aggiungi al carrello" />
-}
+   @using(Html.BeginForm("AddToCarrello","Home",FormMethod.Post)) {
+        <div>
+            Codice: @ViewBag.prodotto.Id
+        </div>
+        <div>
+            Descrizione: @ViewBag.prodotto.Descrizione
+        </div>
+        <div>
+            Giacenza: @ViewBag.prodotto.Giacenza
+        </div>
+        <div>
+            <input type="hidden" name="id" value="@ViewBag.prodotto.Id" />
+            @if(ViewBag.prodotto.QuantitaOrdinata !=0){ 
+                 <input type="number" name="quantita" placeholder="Inserisci quantita" value="@ViewBag.prodotto.QuantitaOrdinata"/>
+             }else{
+                <input type="number" name="quantita" placeholder="Inserisci quantita" />
+             }
+        </div>
+        <hr />
+        <input type="submit" value="Aggiungi al carrello" />
+    }

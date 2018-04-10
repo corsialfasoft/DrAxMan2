@@ -15,16 +15,21 @@ namespace UC0012.Controllers
 			return View();
 		}
 
-		public ActionResult DettaglioProdotto(){
-			return View();
+		public ActionResult DettaglioProdotto(Prodotto prodotto){
+			List<Prodotto> prodotti = Session["prodotti"] as List<Prodotto>;
+			if(prodotti != null && prodotti.Contains(prodotto)) { 
+				ViewBag.prodotto = prodotti[prodotti.IndexOf(prodotto)];
+			}else
+				ViewBag.prodotto = prodotto;
+			return View("DettaglioProdotto");
 		}
 
         public ActionResult Define(String id)
 		{   
             Prodotto prod = db.SearchProdotto(int.Parse(id));
             if(prod != null){ 
-                ViewBag.prodotto = prod;
-            }else{ 
+				return DettaglioProdotto(prod);
+			} else{ 
                 ViewBag.Message = "Prodotto inesistente";    
             }
 			return View("DettaglioProdotto");
@@ -45,29 +50,45 @@ namespace UC0012.Controllers
 				Prodotto prodotto = db.SearchProdotto(codice);
 				if (prodotto == null) {
 					ViewBag.Message=$"Non è stato trovato alcun prodotto con questo codice";
-					return View("Cerca");
+					return View();
 				}
-				ViewBag.prodotto = prodotto;
-				return View("DettaglioProdotto");
-			} else {
+				return DettaglioProdotto(prodotto);
+			} else if(descrizione!="") {
 				List<Prodotto> prodotti = db.SearchProdotti(descrizione);
-				if (prodotti == null) {
-				ViewBag.Message=$"Non è stato trovato alcun prodotto con questa descrizione";
+				if (prodotti == null || prodotti.Count==0) {
+					ViewBag.Message=$"Non è stato trovato alcun prodotto con questa descrizione";
+					return View();
 				}
 				ViewBag.prodotti = prodotti;
-				return View("ListaProdotti");
+			}else{
+				ViewBag.Message = "Inserire almeno un campo per la ricerca";
+				return View();
 			}
+			return View("ListaProdotti");
 		}
-		public ActionResult AddToCarrello(int id,string descrizione,int quantita)
+		public ActionResult AddToCarrello(int id,int? quantita)
 		{
-			Prodotto aggiunto = new Prodotto{Id=id,Descrizione=descrizione,QuantitaOrdinata=quantita };
-			List<Prodotto> prodotti = Session["prodotti"] as List<Prodotto>;
-            if(prodotti == null){ 
-                prodotti = new List<Prodotto>();
-            }
-			prodotti.Add(aggiunto);
-			Session["prodotti"] = prodotti;
-			ViewBag.Message="Elemento aggiunto al carrello";
+			Prodotto prodotto = db.SearchProdotto(id);
+			if (prodotto != null) {
+				if(quantita == null || prodotto.Giacenza < quantita || quantita == 0) {
+					ViewBag.Message = $"Inserire la quantita nel range da 1 a {prodotto.Giacenza}";
+					ViewBag.prodotto = prodotto;
+					return View("DettaglioProdotto");
+				}
+				List<Prodotto> prodotti = Session["prodotti"] as List<Prodotto>;
+				if(prodotti == null){ 
+					prodotti = new List<Prodotto>();
+				}
+				if (prodotti.Contains(prodotto)) {
+					prodotti[prodotti.IndexOf(prodotto)].QuantitaOrdinata = (int)quantita;
+				} else{ 
+					Prodotto aggiunto = new Prodotto{Id=id,Descrizione=prodotto.Descrizione,QuantitaOrdinata=(int)quantita, Giacenza=prodotto.Giacenza };
+					prodotti.Add(aggiunto);
+				}
+				Session["prodotti"] = prodotti;
+				ViewBag.Message="Elemento aggiunto al carrello";
+			}else
+				ViewBag.Message = "Prodotto non è stato trovato ";
 			return View("Cerca");
 		}
 
