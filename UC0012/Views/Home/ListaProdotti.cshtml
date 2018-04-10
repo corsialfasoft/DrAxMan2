@@ -1,17 +1,33 @@
 ﻿@{
-    ViewBag.Title = "DettagliProdotto";
+    ViewBag.Title = "ListaProdotti";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<h2>@ViewBag.Title</h2>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<div class="row">
+    <div class="col-md-4">
+        Codice
+    </div>
+    <div class="col-md-4">
+        Descrizione
+    </div>
+    <div class="col-md-4">
+        Dettagli
+    </div>
+</div>
+@foreach(var p in ViewBag.prodotti){ 
+    <div class="row">
+        <div class="col-md-4">
+            @p.Codice
+        </div>
+        <div class="col-md-4">
+            @p.Descrizione
+        </div>
+        <div class="col-md-4">
+            @Html.ActionLink("Define","Define",new { id = @p.codice })
+        </div>
+    </div>    
+}
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+
+
+
