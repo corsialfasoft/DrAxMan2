@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UC0012", "UC0012\UC0012.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UC0012.Tests", "UC0012.Tests\UC0012.Tests.csproj", "{9231B987-01DF-4D8A-8ACE-D6EC67734661}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4A6E84ED-0475-4E94-8DFD-F2591D9CC0CF}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Downloads\Model1.edmx.sql = ..\..\..\Downloads\Model1.edmx.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
