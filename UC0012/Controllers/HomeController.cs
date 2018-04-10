@@ -38,8 +38,8 @@ namespace UC0012.Controllers
 		{
 			return View();
 		}
-		
-		public ActionResult Ricerca(string id,string descrizione)
+        [HttpPost]
+		public ActionResult Cerca(string id,string descrizione)
 		{
 			DomainModel dm = new DomainModel();
 			int codice ;
@@ -68,6 +68,15 @@ namespace UC0012.Controllers
 			Session["prodotti"] = prodotti;
 			ViewBag.Message="Elemento aggiunto al carrello";
 			return View("Cerca");
+		}
+
+		public ActionResult Carrello(){
+			List<Prodotto> list = Session["prodotti"] as List<Prodotto>;
+			if(list !=null && list.Count>0){
+				ViewBag.Prodotti = list;
+			}else
+				ViewBag.Message= "Non ci sono ordini";
+			return View();
 		}
 	}
 }

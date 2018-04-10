@@ -17,13 +17,15 @@
 @foreach(var p in ViewBag.prodotti){ 
     <div class="row">
         <div class="col-md-4">
-            @p.Codice
+            @p.Id
         </div>
         <div class="col-md-4">
             @p.Descrizione
         </div>
         <div class="col-md-4">
-            @Html.ActionLink("Define","Define",new { id = @p.codice })
+            <span class="badge">
+                @Html.ActionLink("Define","Define",new { id = @p.Id })
+            </span>
         </div>
     </div>    
 }
