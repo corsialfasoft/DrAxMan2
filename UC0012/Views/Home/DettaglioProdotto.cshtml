@@ -15,7 +15,9 @@
         Giacenza: @ViewBag.prodotto.Giacenza
     </div>
     <div>
-        <input type="number" name="qta" placeholder="Inserisci la quantita desiderata" />
+        <input type="hidden" name="id" value="@ViewBag.prodotto.Id" />
+        <input type="hidden" name="descrizione" value="@ViewBag.prodotto.Descrizione" />
+        <input type="number" name="quantita" placeholder="Inserisci la quantita desiderata" />
     </div>
     <hr />
     <input type="submit" value="Aggiungi al carrello" />

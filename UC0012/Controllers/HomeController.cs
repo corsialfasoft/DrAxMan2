@@ -64,6 +64,9 @@ namespace UC0012.Controllers
 		{
 			Prodotto aggiunto = new Prodotto{Id=id,Descrizione=descrizione,QuantitaOrdinata=quantita };
 			List<Prodotto> prodotti = Session["prodotti"] as List<Prodotto>;
+            if(prodotti == null){ 
+                prodotti = new List<Prodotto>();
+            }
 			prodotti.Add(aggiunto);
 			Session["prodotti"] = prodotti;
 			ViewBag.Message="Elemento aggiunto al carrello";
