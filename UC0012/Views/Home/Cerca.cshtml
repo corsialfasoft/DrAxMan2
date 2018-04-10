@@ -5,7 +5,7 @@
 <h3>@ViewBag.Message</h3>
 
 <p>Effettua la ricerca per codice o per descrizione</p>
-@using(Html.BeginForm("Cerca","Home",FormMethod.Get)) {
+@using(Html.BeginForm("Ricerca","Home",FormMethod.Post)) {
     <input type="text" name="id" placeholder="Inserisci il codice" />
     <input type="text" name="descrizione" placeholder="Inserisci una descrizione" />
     <button>Cerca</button>

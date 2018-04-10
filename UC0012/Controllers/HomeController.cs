@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using UC0012.Models;
 using System.Web.Mvc;
-using UC0012.Models
 
 namespace UC0012.Controllers
 {
@@ -39,7 +38,8 @@ namespace UC0012.Controllers
 		{
 			return View();
 		}
-		public ActionResult Cerca(string id,string descrizione)
+		
+		public ActionResult Ricerca(string id,string descrizione)
 		{
 			DomainModel dm = new DomainModel();
 			int codice ;
@@ -59,6 +59,15 @@ namespace UC0012.Controllers
 				ViewBag.prodotti = prodotti;
 				return View("ListaProdotti");
 			}
+		}
+		public ActionResult AddToCarrello(int id,string descrizione,int quantita)
+		{
+			Prodotto aggiunto = new Prodotto{Id=id,Descrizione=descrizione,QuantitaOrdinata=quantita };
+			List<Prodotto> prodotti = Session["prodotti"] as List<Prodotto>;
+			prodotti.Add(aggiunto);
+			Session["prodotti"] = prodotti;
+			ViewBag.Message="Elemento aggiunto al carrello";
+			return View("Cerca");
 		}
 	}
 }

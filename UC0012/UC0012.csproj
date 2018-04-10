@@ -235,7 +235,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Carrello.cshtml" />
     <Content Include="Views\Home\ListaProdotti.cshtml" />
-    <Content Include="Views\Home\DettagliProdotto.cshtml" />
+    <Content Include="Views\Home\DettaglioProdotto.cshtml" />
     <Content Include="Views\Home\Cerca.cshtml" />
   </ItemGroup>
   <ItemGroup>
