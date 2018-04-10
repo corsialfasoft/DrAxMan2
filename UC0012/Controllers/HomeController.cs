@@ -10,7 +10,7 @@ namespace UC0012.Controllers
 {
 	public class HomeController : Controller
 	{
-        IDomainModel db;
+        IDomainModel db = new DomainModel();
 		public ActionResult Index()
 		{
 			return View();
@@ -22,7 +22,6 @@ namespace UC0012.Controllers
 
         public ActionResult Define(String id)
 		{   
-            db = new DomainModel();
             Prodotto prod = db.SearchProdotto(int.Parse(id));
             if(prod != null){ 
                 ViewBag.prodotto = prod;
@@ -42,10 +41,9 @@ namespace UC0012.Controllers
         [HttpPost]
 		public ActionResult Cerca(string id,string descrizione)
 		{
-			DomainModel dm = new DomainModel();
 			int codice ;
 			if (id !="" && int.TryParse(id,out codice)) {
-				Prodotto prodotto = dm.SearchProdotto(codice);
+				Prodotto prodotto = db.SearchProdotto(codice);
 				if (prodotto == null) {
 					ViewBag.Message=$"Non è stato trovato alcun prodotto con questo codice";
 					return View("Cerca");
@@ -53,7 +51,7 @@ namespace UC0012.Controllers
 				ViewBag.prodotto = prodotto;
 				return View("DettaglioProdotto");
 			} else {
-				List<Prodotto> prodotti = dm.SearchProdotti(descrizione);
+				List<Prodotto> prodotti = db.SearchProdotti(descrizione);
 				if (prodotti == null) {
 				ViewBag.Message=$"Non è stato trovato alcun prodotto con questa descrizione";
 				}
@@ -69,6 +67,23 @@ namespace UC0012.Controllers
 			}else
 				ViewBag.Message= "Non ci sono ordini";
 			return View();
+		}
+		public ActionResult Pulisci() {
+			if (Session["prodotti"] !=null) {
+				Session["prodotti"]= null;
+				ViewBag.Message = "Carrello pulito";
+			}
+			return View("Cerca");
+		}
+		public ActionResult Ordina() {
+			List<Prodotto> prodotti = Session["Prodotti"] as List<Prodotto>;
+			if (prodotti != null && prodotti.Count > 0) {
+				db.AddRichiesta(prodotti);
+				Session["Prodotti"] = null;
+				ViewBag.Message = $"Ordini esequiti";
+			} else
+				ViewBag.Message = $"Non ci stato ordini da confermare";
+			return View("Cerca");
 		}
 	}
 }
