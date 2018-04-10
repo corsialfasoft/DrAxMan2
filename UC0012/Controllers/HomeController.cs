@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using UC0012.Models;
 using System.Web.Mvc;
-using UC0012.Models
 
 namespace UC0012.Controllers
 {
@@ -39,7 +38,8 @@ namespace UC0012.Controllers
 		{
 			return View();
 		}
-		public ActionResult Ricerca(string id,string descrizione)
+        [HttpPost]
+		public ActionResult Cerca(string id,string descrizione)
 		{
 			DomainModel dm = new DomainModel();
 			int codice ;
@@ -50,7 +50,7 @@ namespace UC0012.Controllers
 					return View("Cerca");
 				}
 				ViewBag.prodotto = prodotto;
-				return View("DettagliProdotto");
+				return View("DettaglioProdotto");
 			} else {
 				List<Prodotto> prodotti = dm.SearchProdotti(descrizione);
 				if (prodotti == null) {
