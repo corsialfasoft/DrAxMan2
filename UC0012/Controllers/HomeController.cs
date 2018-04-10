@@ -20,10 +20,9 @@ namespace UC0012.Controllers
 			return View();
 		}
 
-		public ActionResult Contact()
+        
+		public ActionResult ListaProdotti()
 		{
-			ViewBag.Message = "Your contact page.";
-
 			return View();
 		}
 	}
